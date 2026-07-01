@@ -1,0 +1,34 @@
+# Non-bank lenders — one search term per line. Lines starting with # are ignored.
+# The finder keeps only companies whose NAME contains the term, so use specific entity names.
+
+Paragon Banking Group
+Paragon Bank
+Together Financial Services
+Together Personal Finance
+Together Commercial Finance
+Shawbrook Bank
+Aldermore Bank
+Charter Court Financial Services
+Precise Mortgages
+OneSavings Bank
+OSB Group
+Pepper Money
+Kensington Mortgage Company
+Foundation Home Loans
+Paratus AMC
+Vida Homeloans
+Belmont Green Finance
+LendInvest
+
+# 2025-26 additions (Dan)
+Atom Bank
+Chetwood Financial
+ModaMortgages
+CHL Mortgages
+Landbay
+Lendco
+ColCap Financial UK
+Molo Finance
+StrideUp
+LiveMore Capital
+Aviva Equity Release

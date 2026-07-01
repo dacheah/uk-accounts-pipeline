@@ -1,0 +1,26 @@
+# ── Secrets — NEVER commit ────────────────────────────────
+secrets.env
+*.key
+
+# ── Data — large, and raw files may contain personal data; never publish ──
+data/
+*.zip
+*.parquet
+
+# ── Product 2 — the curated target list is a gated commercial asset; outputs/cache not published ──
+product2/targets.csv
+product2/candidates.csv
+product2/charges_cache.json
+product2/spv_charges.csv
+product2/entities.csv
+
+# ── Python ────────────────────────────────────────────────
+__pycache__/
+*.pyc
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# ── OS ────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db

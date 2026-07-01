@@ -1,0 +1,55 @@
+# Securitisation SPV shelf names — one search term per line. Lines starting with # are ignored.
+# The finder keeps only companies whose NAME contains the term, so specific shelf names work best.
+
+# Specialist / non-bank RMBS
+Precise Mortgage Funding
+Charter Mortgage Funding
+Gemgarto
+Finsbury Square
+Twin Bridges
+Paragon Mortgages
+Together Asset Backed Securitisation
+Hops Hill
+Tower Bridge Funding
+Stratton Mortgage Funding
+Towd Point Mortgage Funding
+Canada Square Funding
+Hawksmoor Mortgages
+London Wall Mortgage Capital
+Ripon Mortgages
+
+# 2025-26 specialist shelves (Dan's additions)
+Elvet Mortgages
+Chetwood Funding
+Atlas Funding
+Molossus BTL
+Meridian Funding
+Exmoor Funding
+Mortimer
+Oak No
+Aldbrook Mortgage Transaction
+Ealbrook Mortgage Funding
+Shawbrook Mortgage Funding
+
+# Equity release / later-life
+Serval
+Equity Release Funding
+Lifetime Mortgage Funding
+
+# Bank / building-society RMBS
+Silverstone Master Issuer
+Holmes Master Issuer
+Fosse Master Issuer
+Lanark Master Issuer
+Gosforth Funding
+Duncan Funding
+Darrowby
+Brass No
+
+# Other asset classes
+Turbo Finance
+E-CARAT
+Driver UK
+PCL Funding
+NewDay Funding
+Penarth Master Issuer

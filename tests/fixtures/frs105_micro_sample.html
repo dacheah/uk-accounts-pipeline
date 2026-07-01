@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ix="http://www.xbrl.org/2013/inlineXBRL"
+      xmlns:xbrli="http://www.xbrl.org/2003/instance"
+      xmlns:link="http://www.xbrl.org/2003/linkbase"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:core="https://xbrl.frc.org.uk/fr/2024-01-01/core"
+      xmlns:iso4217="http://www.xbrl.org/2003/iso4217">
+<head><title>SAMPLE MICRO LIMITED — Micro-entity accounts 2024</title></head>
+<body>
+  <ix:header>
+    <ix:references>
+      <link:schemaRef xlink:type="simple"
+        xlink:href="https://xbrl.frc.org.uk/FRS-105/2024-01-01/FRS-105-2024-01-01.xsd"/>
+    </ix:references>
+    <ix:resources>
+      <xbrli:context id="dur_cur">
+        <xbrli:entity><xbrli:identifier scheme="http://www.companieshouse.gov.uk/">87654321</xbrli:identifier></xbrli:entity>
+        <xbrli:period><xbrli:startDate>2024-01-01</xbrli:startDate><xbrli:endDate>2024-12-31</xbrli:endDate></xbrli:period>
+      </xbrli:context>
+      <xbrli:context id="inst_cur">
+        <xbrli:entity><xbrli:identifier scheme="http://www.companieshouse.gov.uk/">87654321</xbrli:identifier></xbrli:entity>
+        <xbrli:period><xbrli:instant>2024-12-31</xbrli:instant></xbrli:period>
+      </xbrli:context>
+      <xbrli:context id="inst_prev">
+        <xbrli:entity><xbrli:identifier scheme="http://www.companieshouse.gov.uk/">87654321</xbrli:identifier></xbrli:entity>
+        <xbrli:period><xbrli:instant>2023-12-31</xbrli:instant></xbrli:period>
+      </xbrli:context>
+      <xbrli:unit id="GBP"><xbrli:measure>iso4217:GBP</xbrli:measure></xbrli:unit>
+      <xbrli:unit id="pure"><xbrli:measure>xbrli:pure</xbrli:measure></xbrli:unit>
+    </ix:resources>
+  </ix:header>
+
+  <h1>Micro-entity balance sheet (figures in &#163;)</h1>
+  <p>Note: micro-entity filings typically include only a balance sheet — no turnover
+     or profit and loss is filed at Companies House.</p>
+  <table>
+    <tr><td>Fixed assets</td>
+        <td><ix:nonFraction name="core:FixedAssets" contextRef="inst_cur" unitRef="GBP" decimals="0" scale="0">80,000</ix:nonFraction></td>
+        <td><ix:nonFraction name="core:FixedAssets" contextRef="inst_prev" unitRef="GBP" decimals="0" scale="0">72,000</ix:nonFraction></td></tr>
+    <tr><td>Current assets</td>
+        <td><ix:nonFraction name="core:CurrentAssets" contextRef="inst_cur" unitRef="GBP" decimals="0" scale="0">45,000</ix:nonFraction></td>
+        <td><ix:nonFraction name="core:CurrentAssets" contextRef="inst_prev" unitRef="GBP" decimals="0" scale="0">40,000</ix:nonFraction></td></tr>
+    <tr><td>Net assets</td>
+        <td><ix:nonFraction name="core:NetAssetsLiabilities" contextRef="inst_cur" unitRef="GBP" decimals="0" scale="0">60,000</ix:nonFraction></td>
+        <td><ix:nonFraction name="core:NetAssetsLiabilities" contextRef="inst_prev" unitRef="GBP" decimals="0" scale="0">52,000</ix:nonFraction></td></tr>
+  </table>
+
+  <p>Average number of employees during the period:
+     <ix:nonFraction name="core:AverageNumberEmployeesDuringPeriod" contextRef="dur_cur" unitRef="pure" decimals="0">3</ix:nonFraction></p>
+</body>
+</html>
