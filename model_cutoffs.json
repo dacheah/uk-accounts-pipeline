@@ -1,0 +1,18 @@
+{
+  "_purpose": "Release dates of the evaluated models. The contamination-control slice uses only filings PUBLISHED by Companies House on or after threshold_date, i.e. after every evaluated model was released. Content published after a model's release cannot appear in its training data - this bounds contamination without needing vendor cutoff disclosures.",
+  "threshold_rule": "max(released) + 1 day, applied to the Companies House daily archive date (Accounts_Bulk_Data-YYYY-MM-DD.zip), which is the date the filings became public.",
+  "threshold_date": "2026-06-17",
+  "models": [
+    {"name": "GPT-5.5", "provider": "openai", "released": "2026-04-23",
+     "source": "https://openai.com/index/introducing-gpt-5-5/ (launch reported 23 April 2026)"},
+    {"name": "DeepSeek V4 Pro", "provider": "openrouter", "released": "2026-04-24",
+     "source": "https://api-docs.deepseek.com/news/news260424"},
+    {"name": "Claude Opus 4.8", "provider": "anthropic", "released": "2026-05-28",
+     "source": "https://www.anthropic.com/news/claude-opus-4-8 (28 May 2026)"},
+    {"name": "GLM 5.2", "provider": "openrouter", "released": "2026-06-16",
+     "source": "https://simonwillison.net/2026/jun/17/glm-52/ (released 16 June 2026)"},
+    {"name": "Gemini 2.5 Pro", "provider": "google", "released": "2025-03-25",
+     "source": "Google DeepMind announcement, March 2025"}
+  ],
+  "verified": "2026-07-05 via vendor announcements and contemporaneous coverage"
+}

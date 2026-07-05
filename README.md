@@ -25,6 +25,9 @@ src/
 build_product1.py    full Product 1 build (resumable, parallel, per-month)
 build_benchmark.py   1,000 verified Q&A from the structured dataset
 build_benchmark_hard.py  350 Q&A from raw redacted filings (the hard test)
+build_benchmark_postcutoff.py  contamination-control slice: same task, but only filings
+                     published AFTER every evaluated model's release (model_cutoffs.json);
+                     ground truth computed directly from the public daily archives
 evaluate.py          run a frontier model against a benchmark, score it
 benchmark_grading.py answer parsing + grading
 smoke_test.py        validate the pipeline against one real daily file
@@ -47,6 +50,7 @@ python smoke_test.py                         # quick validation on one real dail
 python build_product1.py --months 12         # full dataset (resumable, parallel)
 python build_benchmark.py                    # generate the clean benchmark
 python build_benchmark_hard.py               # generate the raw-filing benchmark
+python build_benchmark_postcutoff.py         # contamination-control slice (post-cutoff filings)
 python evaluate.py --provider anthropic      # score a model (add --hard for the raw set)
 ```
 
