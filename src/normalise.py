@@ -150,14 +150,22 @@ def _primary_periods(contexts):
     return period_end, instant_ids, duration_ids, period_start
 
 
-def _pick(field, facts, instant_ids, duration_ids):
+def _pick2(field, facts, instant_ids, duration_ids):
+    """Return (value, in_period_flag). in_period_flag is False when the value had to be
+    taken from a context OUTSIDE the primary reporting period (e.g. only the prior-year
+    comparative is tagged) — callers can then flag the provenance honestly."""
     names = SINGLE_VALUE_SYNONYMS[field]
     preferred = duration_ids if field in DURATION_FIELDS else instant_ids
     cands = [f for f in facts if f["concept"] in names and f["value"] is not None]
     if not cands:
-        return None
+        return None, True
     in_period = [f for f in cands if f["context_ref"] in preferred]
-    return sorted(in_period or cands, key=lambda f: abs(f["value"]), reverse=True)[0]["value"]
+    pool = in_period or cands
+    return sorted(pool, key=lambda f: abs(f["value"]), reverse=True)[0]["value"], bool(in_period)
+
+
+def _pick(field, facts, instant_ids, duration_ids):
+    return _pick2(field, facts, instant_ids, duration_ids)[0]
 
 
 def _read_meta(facts):
@@ -215,9 +223,9 @@ def normalise(extracted):
     prov = {}
 
     def pick(field):
-        v = _pick(field, facts, instant_ids, duration_ids)
+        v, in_period = _pick2(field, facts, instant_ids, duration_ids)
         if v is not None:
-            prov[field] = "reported"
+            prov[field] = "reported" if in_period else "reported(out-of-period)"
         return v
 
     turnover = pick("turnover"); gross_profit = pick("gross_profit"); operating_profit = pick("operating_profit")

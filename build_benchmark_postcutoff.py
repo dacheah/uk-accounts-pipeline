@@ -137,13 +137,30 @@ def main() -> None:
             vals = {"net_assets": rec.get("net_assets"), "employees": rec.get("employees"),
                     "cash": rec.get("cash"), "current_assets": rec.get("current_assets"),
                     "f_within_creditors_total": fw}
+            prov = rec.get("provenance") or {}
+            PROV_KEY = {"net_assets": "net_assets", "employees": "employees", "cash": "cash",
+                        "current_assets": None, "f_within_creditors_total": None}
             for f, v in vals.items():
                 ok = v is not None and not (isinstance(v, float) and math.isnan(v))
+                # exclude values normalise had to take from OUTSIDE the reporting period
+                # (prior-year comparatives) - the post-cutoff run proved models read the
+                # current-year column and get marked wrong against such ground truth
+                pk = PROV_KEY.get(f)
+                if pk and "out-of-period" in str(prov.get(pk, "")):
+                    ok = False
+                if f == "current_assets" and "out-of-period" in str(prov.get("total_assets", "")):
+                    ok = False
                 if ok and (f == "net_assets" or v > 0) and rec.get("period_end"):
                     pools[f].append((rec, v))
             if (rec.get("turnover") is None and rec.get("net_assets") is not None
+                    and "out-of-period" not in str(prov.get("net_assets", ""))
                     and rec.get("dormant") is not True and rec.get("period_end")):
-                trap.append(rec)
+                # trap guard: if the RENDERED text mentions turnover/revenue, the figure may be
+                # displayed without a tag we parse - not a valid "not disclosed" item
+                txt = render_redacted(data).lower()
+                if "turnover" not in txt and "revenue" not in txt:
+                    rec["_ctx"] = txt  # reuse; render is the expensive step
+                    trap.append(rec)
         zf.close()
 
     print("pool sizes:", {k: len(v) for k, v in pools.items()}, "| trap:", len(trap))
@@ -181,7 +198,7 @@ def main() -> None:
     for rec in trap:
         if got >= N_HALLUCINATION:
             break
-        ctx = render_redacted(rec["_bytes"])
+        ctx = rec.get("_ctx") or render_redacted(rec["_bytes"])
         if not ctx:
             continue
         q = PROMPT.format(ctx=ctx, label="turnover", pe=rec["period_end"], unit="figure in pounds")
