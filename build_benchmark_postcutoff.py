@@ -99,6 +99,7 @@ def main() -> None:
     ap.add_argument("--max-days", type=int, default=8, help="max number of daily archives to use")
     ap.add_argument("--per-day", type=int, default=1500, help="filings sampled per daily archive")
     ap.add_argument("--no-download", action="store_true", help="only use ZIPs already on disk")
+    ap.add_argument("--version", default="v2", help="output folder suffix (v1 was pre-hardening; see BENCHMARK_RESULTS honesty notes)")
     a = ap.parse_args()
     random.seed(SEED)
 
@@ -209,7 +210,7 @@ def main() -> None:
     for i, it in enumerate(items, 1):
         it["id"] = f"p{i:04d}"
 
-    out_dir = config.OUT_DIR / "benchmark_postcutoff_v1"
+    out_dir = config.OUT_DIR / f"benchmark_postcutoff_{a.version}"
     out_dir.mkdir(parents=True, exist_ok=True)
     with open(out_dir / "benchmark.jsonl", "w", encoding="utf-8") as fh:
         for it in items:
