@@ -54,6 +54,11 @@ def render_redacted(data_bytes):
     """Render an iXBRL filing to plain text with personal-data facts blanked out, keeping
     adjacent cell/element text separated so column figures don't merge into one token."""
     root = etree.fromstring(data_bytes, etree.XMLParser(recover=True, huge_tree=True))
+    # Drop <style>/<script> blocks (any namespace) so their CSS/JS text does not pollute the
+    # rendered context. Without this, short micro-entity filings can be swamped by the stylesheet
+    # and the balance-sheet figure gets pushed past the context window (cf. p0225/p0233, where all
+    # five models read "0"). with_tail=False keeps any text that followed the removed element.
+    etree.strip_elements(root, "{*}style", "{*}script", with_tail=False)
     for el in root.iter():
         if not isinstance(el.tag, str):
             continue

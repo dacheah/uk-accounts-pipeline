@@ -20,7 +20,8 @@ import zipfile
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent.parent
-sys.path.insert(0, str(HERE / "src"))
+sys.path.insert(0, str(HERE))          # repo root: build_benchmark_hard lives here
+sys.path.insert(0, str(HERE / "src"))  # pipeline modules: config, parse_ixbrl, normalise
 import config            # noqa: E402
 import parse_ixbrl       # noqa: E402
 import normalise         # noqa: E402
